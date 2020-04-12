@@ -20,8 +20,9 @@ import pageObjects.AddcustomerPage;
 import pageObjects.LoginPage;
 import pageObjects.SearchCustomerPage;
 
-public class Stepdef extends BaseClass {
+public class Stepdef extends BaseClass{
 	
+
 	@Before
 	public void setup() throws IOException
 	{
@@ -183,10 +184,9 @@ public class Stepdef extends BaseClass {
 	}
 
 	//Searching customer by email ID.............................
-	
 	@When("Enter customer EMail")
 	public void enter_customer_EMail() {
-		searchCust=new SearchCustomerPage(driver);		
+		searchCust=new SearchCustomerPage(driver);
 		logger.info("********* Searching customer details by Email **************");
 		searchCust.setEmail("victoria_victoria@nopCommerce.com");
 	}
@@ -194,7 +194,7 @@ public class Stepdef extends BaseClass {
 	@When("Click on search button")
 	public void click_on_search_button() throws InterruptedException {
 		searchCust.clickSearch();
-	Thread.sleep(3000);
+		Thread.sleep(3000);
 	}
 
 	@Then("User should found Email in the Search table")
@@ -204,15 +204,14 @@ public class Stepdef extends BaseClass {
 	}
 	
 	//steps for searching a customer by Name................
-	
 		@When("Enter customer FirstName")
-		public void enter_customer_FirstName() {			
+		public void enter_customer_FirstName() {
 			logger.info("********* Searching customer details by Name **************");
 			searchCust=new SearchCustomerPage(driver);
 			searchCust.setFirstName("Victoria");
 		}
 
-		@When("Enter customer LastName")		
+		@When("Enter customer LastName")
 		public void enter_customer_LastName() {
 			searchCust.setLastName("Terces");
 		}
@@ -222,6 +221,7 @@ public class Stepdef extends BaseClass {
 			boolean status=searchCust.searchCustomerByName("Victoria Terces");
 			Assert.assertEquals(true, status);
 		}
+	
 	
 
 }

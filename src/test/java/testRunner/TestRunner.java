@@ -8,10 +8,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features={".//Features/Login.feature",".//Features/Customers1.feature"},
+		features=".//Features/",
 		glue="stepDefinitions",
 		monochrome=true,
-		//tags= {"@sanity"},
+		tags= {"@sanity,@regression"},   //Or means scenario fall under either sanity and regression
+		//tags= {"@sanity","@regression"},   //And means scenario fall under both sanity and regression
 		plugin= {"pretty","html:test-output"}
 		)
 

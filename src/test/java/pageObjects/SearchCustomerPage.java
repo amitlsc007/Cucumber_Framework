@@ -10,24 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import com.sun.*;
-
-import utilities.WaitHelper;
-
 public class SearchCustomerPage {
-	
 	public WebDriver ldriver;
-	
-	WaitHelper waithelper;
 
 	public SearchCustomerPage(WebDriver rdriver) {
 		ldriver = rdriver;
 		PageFactory.initElements(ldriver, this);
-		waithelper=new WaitHelper(ldriver);
-		
 	}
 
-	
 	@FindBy(how = How.ID, using = "SearchEmail")
 	@CacheLookup
 	WebElement txtEmail;
@@ -58,20 +48,18 @@ public class SearchCustomerPage {
 	List<WebElement> tableColumns;
 
 	public void setEmail(String email) {
-		waithelper.WaitForElement(txtEmail, 30);
 		txtEmail.clear();
 		txtEmail.sendKeys(email);
 	}
 
 	public void setFirstName(String fname) {
-		
-		waithelper.WaitForElement(txtFirstName, 30);
+
 		txtFirstName.clear();
 		txtFirstName.sendKeys(fname);
 	}
 
 	public void setLastName(String lname) {
-		waithelper.WaitForElement(txtLastName, 30);
+
 		txtLastName.clear();
 		txtLastName.sendKeys(lname);
 	}
@@ -110,21 +98,23 @@ public class SearchCustomerPage {
 
 	}
 
-	
+	public boolean searchCustomerByName(String Name) {
+		boolean flag = false;
 
-	
-	  public boolean searchCustomerByName(String Name) { boolean flag = false;
-	  
-	  for (int i = 1; i <= getNoOfRows(); i++) { String name =
-	  table.findElement(By.xpath("//table[@id='customers-grid']/tbody/tr[" + i +
-	  "]/td[3]")) .getText();
-	 
-	
-	  if (Name.equals(name)) { flag = true; break; } }
-	  
-	  return flag;
-	  
-	  }
-	 
+		for (int i = 1; i <= getNoOfRows(); i++) {
+			String name = table.findElement(By.xpath("//table[@id='customers-grid']/tbody/tr[" + i + "]/td[3]"))
+					.getText();
+
+			
+			if (Name.equals(name)) {
+				flag = true;
+				break;
+			}
+		}
+
+		return flag;
+
+	}
+
 
 }
